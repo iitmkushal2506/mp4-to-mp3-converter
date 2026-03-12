@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>AudioForge</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<h2>🎧 Kush's Audio Convertor</h2>
+<div class="links">
+<a href="#">Home</a>
+<a href="#">Convert</a>
+<a href="#">About</a>
+</div>
+</nav>
+
+
+<div class="container">
+
+<h1>MP4 → MP3 Converter</h1>
+
+<div class="upload-box">
+
+<input type="file" id="videoFile">
+
+<button onclick="uploadFile()">Convert</button>
+
+</div>
+
+<div id="loading" class="hidden">
+<div class="spinner"></div>
+<p>Converting your audio...</p>
+</div>
+
+<div id="result" class="hidden">
+
+<h3>Your audio is ready 🎵</h3>
+
+<audio id="player" controls></audio>
+
+<br>
+
+<a id="downloadBtn">
+<button>Download MP3</button>
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+function uploadFile(){
+
+let fileInput = document.getElementById("videoFile")
+
+let file = fileInput.files[0]
+
+if(!file){
+alert("Select a video")
+return
+}
+
+let formData = new FormData()
+
+formData.append("video",file)
+
+document.getElementById("loading").classList.remove("hidden")
+
+fetch("/convert",{
+method:"POST",
+body:formData
+})
+.then(res=>res.json())
+.then(data=>{
+
+document.getElementById("loading").classList.add("hidden")
+
+document.getElementById("result").classList.remove("hidden")
+
+let audioURL = "/play/"+data.file
+
+document.getElementById("player").src = audioURL
+
+document.getElementById("downloadBtn").href="/download/"+data.file
+
+})
+
+}
+
+</script>
+
+</body>
+</html>
