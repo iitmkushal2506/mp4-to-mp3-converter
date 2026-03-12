@@ -23,17 +23,20 @@
 </nav>
 
 
-<div class="container" id="convert">
+<section class="hero">
 
 <h1>MP4 → MP3 Converter</h1>
 
-<div class="upload-box">
+<p class="subtitle">
+Convert your MP4 videos into high-quality MP3 audio files instantly.
+Upload a video, extract the audio, preview it, and download the MP3.
+</p>
+
+<div class="converter-box" id="convert">
 
 <input type="file" id="videoFile">
 
 <button onclick="uploadFile()">Convert</button>
-
-</div>
 
 <div id="loading" class="hidden">
 <div class="spinner"></div>
@@ -49,28 +52,34 @@
 <br>
 
 <a id="downloadBtn">
-<button>Download MP3</button>
+<button class="download">Download MP3</button>
 </a>
 
 </div>
 
 </div>
 
+</section>
+
+
 
 <section id="about" class="about">
+
+<div class="about-container">
 
 <h2>About This Project</h2>
 
 <p>
-Kush's MP4 to MP3 Converter is a web-based tool that allows users to convert MP4 video files into MP3 audio files.
-The application provides a simple interface where users can upload a video file, convert it to audio format,
-preview the result, and download the converted MP3 file.
+Kush's MP4 to MP3 Converter is a web-based application that converts MP4 video
+files into MP3 audio files using a simple and clean interface.
+Users can upload locally stored video files, convert them to MP3 format,
+preview the audio directly in the browser, and download the converted file.
 </p>
 
 <h3>Important Note</h3>
 
 <p>
-This application is NOT a YouTube downloader or streaming converter.
+This tool is NOT a YouTube downloader or streaming converter.
 It only works with MP4 files that are already downloaded on your device.
 </p>
 
@@ -79,52 +88,60 @@ It only works with MP4 files that are already downloaded on your device.
 <p>
 When a user uploads an MP4 file, the backend server processes the file using FFmpeg.
 FFmpeg extracts the audio stream from the video file and converts it into MP3 format.
-The converted audio file is then returned to the user.
+The resulting audio file is then returned to the browser where it can be played
+or downloaded.
 </p>
 
 <h3>Technologies Used</h3>
 
 <ul>
-
 <li>Python</li>
 <li>Flask Web Framework</li>
 <li>FFmpeg for audio extraction</li>
-<li>HTML, CSS and JavaScript for frontend</li>
+<li>HTML, CSS and JavaScript</li>
 <li>Gunicorn production server</li>
-
 </ul>
 
-<h3>Code Explanation</h3>
+<h3>Code Overview</h3>
 
 <p>
-The backend of the application is written in Python using Flask.
-The Flask server receives the uploaded file and stores it temporarily.
-A subprocess call is used to run FFmpeg which extracts the audio stream.
-Once the conversion is completed, the server sends the MP3 file back to the browser.
+The backend is built using Flask. When a file is uploaded, the server temporarily
+stores it and runs an FFmpeg command using Python's subprocess module to extract
+the audio stream. Once conversion finishes, the MP3 file is returned to the user.
 </p>
 
 <h3>Deployment</h3>
 
 <p>
-This project is deployed on Render. The code is stored on GitHub and automatically deployed whenever updates
-are pushed to the repository.
+This application is deployed using Render. The source code is hosted on GitHub.
+Whenever new code is pushed to the repository, Render automatically redeploys
+the application so the live site stays updated.
 </p>
+
+</div>
 
 </section>
 
 
+
 <footer>
 
-<p>Created by Kushal Batra</p>
+<div class="footer-container">
+
+<p>Created by <strong>Kushal Batra</strong></p>
 
 <p>
-GitHub Repository:
+GitHub Repository
+</p>
+
 <a href="https://github.com/iitmkushal2506/mp4-to-mp3-converter" target="_blank">
 github.com/iitmkushal2506/mp4-to-mp3-converter
 </a>
-</p>
+
+</div>
 
 </footer>
+
 
 
 <script>
@@ -136,7 +153,7 @@ let fileInput = document.getElementById("videoFile")
 let file = fileInput.files[0]
 
 if(!file){
-alert("Select a video")
+alert("Select a video file first")
 return
 }
 
@@ -157,9 +174,9 @@ document.getElementById("loading").classList.add("hidden")
 
 document.getElementById("result").classList.remove("hidden")
 
-let audioURL = "/play/"+data.file
+let audioURL="/play/"+data.file
 
-document.getElementById("player").src = audioURL
+document.getElementById("player").src=audioURL
 
 document.getElementById("downloadBtn").href="/download/"+data.file
 
