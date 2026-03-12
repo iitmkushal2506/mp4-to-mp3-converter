@@ -1,84 +1,92 @@
 body{
-
 margin:0;
 font-family:Arial;
 background:#121212;
 color:white;
-
 }
 
-.navbar{
 
+/* NAVBAR */
+
+.navbar{
 display:flex;
 justify-content:space-between;
-padding:15px 40px;
+padding:20px 40px;
 background:#000;
-
+position:sticky;
+top:0;
+z-index:10;
 }
 
 .navbar h2{
-
 color:#1db954;
-
 }
 
 .links a{
-
-margin-left:20px;
+margin-left:25px;
 color:white;
 text-decoration:none;
-
+font-weight:500;
 }
 
-.container{
 
+/* HERO SECTION */
+
+.hero{
 text-align:center;
-margin-top:120px;
-
+padding:120px 20px 100px 20px;
 }
 
-.upload-box{
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
 
+.subtitle{
+color:#b3b3b3;
+max-width:600px;
+margin:auto;
+margin-bottom:40px;
+}
+
+
+/* CONVERTER BOX */
+
+.converter-box{
 background:#181818;
 padding:40px;
 width:400px;
 margin:auto;
 border-radius:12px;
-
-}
-
-input{
-
-margin:20px;
-color:white;
-
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 button{
-
 background:#1db954;
 border:none;
-padding:10px 25px;
-border-radius:20px;
+padding:12px 30px;
+border-radius:25px;
 font-size:16px;
 cursor:pointer;
-
+margin-top:15px;
 }
 
 button:hover{
-
 background:#1ed760;
-
 }
 
+.download{
+margin-top:20px;
+}
+
+
+/* LOADING */
+
 .hidden{
-
 display:none;
-
 }
 
 .spinner{
-
 border:6px solid #333;
 border-top:6px solid #1db954;
 border-radius:50%;
@@ -86,66 +94,52 @@ width:40px;
 height:40px;
 animation:spin 1s linear infinite;
 margin:auto;
-
+margin-top:20px;
 }
 
 @keyframes spin{
-
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
-
 }
 
-audio{
 
-margin-top:20px;
-
-}
+/* ABOUT SECTION */
 
 .about{
+padding:120px 20px;
+background:#0f0f0f;
+}
 
-margin-top:120px;
-padding:60px;
+.about-container{
 max-width:900px;
-margin-left:auto;
-margin-right:auto;
-text-align:left;
+margin:auto;
 line-height:1.7;
-
 }
 
 .about h2{
-
 color:#1db954;
 margin-bottom:20px;
-
 }
 
 .about h3{
-
-margin-top:25px;
+margin-top:30px;
 color:#1db954;
-
 }
 
 .about ul{
-
 margin-top:10px;
-
 }
 
+
+/* FOOTER */
+
 footer{
-
-margin-top:100px;
-padding:30px;
-text-align:center;
 background:#000;
-
+padding:40px;
+text-align:center;
 }
 
 footer a{
-
 color:#1db954;
 text-decoration:none;
-
 }
